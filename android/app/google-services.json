@@ -7,17 +7,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:411443132443:android:7ed809c319f399189420be",
+        "mobilesdk_app_id": "1:411443132443:android:af147f49650f19af9420be",
         "android_client_info": {
-          "package_name": "capacitor.config.ts"
+          "package_name": "io.ionic.starter"
         }
       },
       "oauth_client": [
         {
-          "client_id": "411443132443-bv8cmoe6lgj30ouk60tbt5qog5n8tme0.apps.googleusercontent.com",
+          "client_id": "411443132443-epchh5d370vjtj2l6jaft2m3i5juepd7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "capacitor.config.ts",
+            "package_name": "io.ionic.starter",
             "certificate_hash": "60b3020bdac0ce7ba739bd364d69379009979ce2"
           }
         },
