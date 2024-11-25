@@ -8,6 +8,7 @@ Shift Lama: C
 Shift Baru: D  
 
 # DAFTAR ISI
+
 - [Tugas 9](#tugas-9)
 - [Tugas 10](#tugas-10)
 
@@ -189,6 +190,96 @@ ionic cap open android
 ```
 
 ### 6. Membuat APK Signed
-Ikuti langkah-langkah di Android Studio untuk membangun APK signed.
+
+Setelah Anda menyelesaikan pengaturan proyek dan konfigurasi Firebase, langkah berikutnya adalah membuat APK yang sudah signed untuk bisa dipublikasikan di Google Play Store. Ikuti langkah-langkah berikut di Android Studio:
+
+1. **Buka Proyek di Android Studio:**
+   - Setelah sinkronisasi selesai, buka proyek Android Anda di Android Studio dengan perintah:
+   ```bash
+   ionic cap open android
+   ```
+
+2. **Membuat Keystore:**
+   Jika Anda belum memiliki file keystore untuk menandatangani APK, Anda dapat membuatnya menggunakan `keytool`. Gunakan perintah berikut untuk menghasilkan keystore baru (sesuaikan dengan nama dan password yang Anda inginkan):
+   ```bash
+   keytool -genkeypair -v -keystore my-release-key.keystore -keyalg RSA -keysize 2048 -validity 10000 -alias my-key-alias
+   ```
+
+3. **Tambahkan Keystore di Gradle:**
+   - Tempatkan file keystore di dalam folder `android/app/`.
+   - Tambahkan konfigurasi keystore ke file `android/app/build.gradle` di bagian `signingConfigs` seperti berikut:
+   ```gradle
+   android {
+       signingConfigs {
+           release {
+               storeFile file("my-release-key.keystore")
+               storePassword "your_store_password"
+               keyAlias "my-key-alias"
+               keyPassword "your_key_password"
+           }
+       }
+   }
+   ```
+
+4. **Generate Signed APK di Android Studio:**
+   - Pilih menu "Build" > "Generate Signed Bundle / APK".
+   - Pilih "APK" dan klik "Next".
+   - Pilih konfigurasi keystore yang telah Anda tentukan sebelumnya, dan masukkan password untuk keystore dan key alias.
+   - Pilih "Release" sebagai build variant.
+   - Klik "Finish" untuk memulai proses pembuatan APK signed.
+   - Setelah proses selesai, APK signed akan tersedia di direktori:
+     ```
+     android/app/build/outputs/apk/release/app-release.apk
+     ```
+
+5. **Uji APK:**
+   - Sebelum mengunggah ke Google Play Store, pastikan Anda menguji APK di perangkat Android untuk memastikan semuanya berjalan lancar.
 
 ### 7. Konfigurasi Firebase
+
+Untuk mengonfigurasi Firebase di aplikasi Android Anda, ikuti langkah-langkah berikut:
+
+1. **Mendapatkan `google-services.json`:**
+   - Masuk ke [Firebase Console](https://console.firebase.google.com/), pilih proyek Anda.
+   - Di panel kiri, klik "Project settings" (ikon roda gigi).
+   - Di bagian "Your apps", pilih aplikasi Android.
+   - Salin file `google-services.json` yang telah dikonfigurasi.
+   - Letakkan file ini di dalam folder `android/app/` di proyek Anda.
+
+2. **Menambahkan Plugin Firebase di Gradle:**
+   - Di file `android/build.gradle`, pastikan Anda menambahkan plugin Firebase seperti berikut di bagian `dependencies`:
+   ```gradle
+   buildscript {
+       dependencies {
+           classpath 'com.google.gms:google-services:4.3.15'  // Sesuaikan dengan versi terbaru
+       }
+   }
+   ```
+   - Pada file `android/app/build.gradle`, pastikan Anda menambahkan plugin di bawah ini:
+   ```gradle
+   apply plugin: 'com.google.gms.google-services'
+   ```
+
+3. **Aktifkan Firebase Authentication:**
+   - Kembali ke Firebase Console, pilih proyek Anda, dan aktifkan metode autentikasi yang Anda butuhkan di bagian Authentication > Sign-in method.
+   - Pilih "Google" dan aktifkan.
+
+4. **Menambahkan Firebase SDK di Proyek:**
+   - Untuk menggunakan Firebase Authentication, pastikan Anda menambahkan dependensi Firebase SDK di file `android/app/build.gradle`:
+   ```gradle
+   dependencies {
+       implementation 'com.google.firebase:firebase-auth:21.1.0'  // Sesuaikan dengan versi terbaru
+   }
+   ```
+
+5. **Sinkronisasi dengan Capacitor:**
+   Setelah menambahkan file konfigurasi `google-services.json` dan dependensi Firebase, jalankan perintah berikut untuk menyinkronkan perubahan ke proyek Android:
+   ```bash
+   ionic cap sync android
+   ```
+
+6. **Cek dan Uji Koneksi Firebase:**
+   - Buka kembali aplikasi Anda di Android Studio dan pastikan aplikasi dapat terhubung dengan Firebase.
+   - Anda bisa mengecek di logcat untuk memastikan tidak ada error terkait Firebase.
+
+Setelah mengikuti langkah-langkah ini, aplikasi Anda akan siap untuk menggunakan Firebase Authentication dan layanan lainnya. Anda dapat melanjutkan dengan membangun APK dan mempublikasikannya ke Google Play Store jika semuanya sudah terkonfigurasi dengan benar.
