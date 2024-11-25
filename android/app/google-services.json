@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "411443132443",
+    "project_id": "vue-project-72067",
+    "storage_bucket": "vue-project-72067.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:411443132443:android:7ed809c319f399189420be",
+        "android_client_info": {
+          "package_name": "capacitor.config.ts"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "411443132443-bv8cmoe6lgj30ouk60tbt5qog5n8tme0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "capacitor.config.ts",
+            "certificate_hash": "60b3020bdac0ce7ba739bd364d69379009979ce2"
+          }
+        },
+        {
+          "client_id": "411443132443-3432fhlfpfmt82bcf0f9863e9ko9e5f8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeyyvQAQb-qXTnGTvzmeloPG-oG9gqItM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "411443132443-3432fhlfpfmt82bcf0f9863e9ko9e5f8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
